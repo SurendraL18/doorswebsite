@@ -1,0 +1,7 @@
+img{
+    transition: transform .2s; /* Animation duration */
+  }
+
+ img:hover {
+    transform: scale(1.2); /* Zoom in by 20% */
+  }
