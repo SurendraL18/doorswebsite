@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OnInit } from '@angular/core';
 
 
 @Component({
   selector: 'app-accessories-product',
   standalone: true,
-  imports: [NavbarComponent,FooterComponent],
+  imports: [NavbarComponent,FooterComponent,RouterLink],
   templateUrl: './accessories-product.component.html',
   styleUrl: './accessories-product.component.css'
 })
@@ -35,6 +35,13 @@ export class AccessoriesProductComponent implements OnInit {
       this.walink= walink !== null ? walink:'';
     });
   }
+ 
+  reloadPageAfterInterval(interval: number): void {
+    setTimeout(() => {
+      location.reload();
+    }, interval);
+  }
+
 
 
 }

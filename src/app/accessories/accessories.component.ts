@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule} from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-accessories',
@@ -12,7 +13,17 @@ import { RouterLink } from '@angular/router';
   templateUrl: './accessories.component.html',
   styleUrl: './accessories.component.css'
 })
-export class AccessoriesComponent {
+
+export class AccessoriesComponent  implements OnInit  {
+   
+  
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private meta: Meta,
+    private title: Title
+  ) { }
   items = [
     { name:'Woodcraft Pulls', categories: ['All Category', 'handle'], image: '../../assets/Woodcraft Pulls.png', alt:'Woodcraft Pulls',Id:'344D15D01' ,material:'Solid Wood', walink:'https://wa.me/919819600149?text=Hello%2C%20I%20want%20the%20prices%20for%20Product%20no.%20344D15D01%20and%20Name%3A%20Woodcraft%20Pulls'},
 
@@ -77,5 +88,25 @@ export class AccessoriesComponent {
   setCurrentCategory(category: string) {
     this.selectedCategory = category;
   }
+  reloadPageAfterInterval(interval: number): void {
+    setTimeout(() => {
+      location.reload();
+    }, interval);
+  }
 
-}
+  ngOnInit(): void {
+    // Initialize meta tags
+    this.meta.addTags([
+      { name: 'description', content:'Elevate the functionality and aesthetics of your doors with our wide selection of door accessories. From handles and hinges to locks and doorstops, find the perfect finishing touches to complement your interior decor and enhance the usability of your doors.' },
+      { name: 'keywords', content:'Doors, samuraidoors, entry door glass inserts suppliers, door suppliers near me,door manufacturer,door manufacturers near me,exterior door manufacturers,interior door manufactuers,Antique door knobs,Modern door knobs,Glass door knobs,Brass door knobs,Decorative door knobs,Butt hinges,Self-closing hinges,Heavy-duty door hinges,Pivot hinges,Lever door handles,Entry door handles,Interior door handles,Stainless steel door handles,Chrome door accessories,Nickel door hardware,Bronze door fittings,Black door handles,Satin-finish knobs,Caring for door knobs and handles,Choosing the right door accessories'}
+      // Add more meta tags as needed
+    ]);
+    this.setTitle('Accessories for Doors|Samurai Doors|Door Manufactures|Door suppliers');
+  }
+  public setTitle( newTitle: string) {
+    this.title.setTitle( newTitle );
+    }
+
+   
+  }
+
